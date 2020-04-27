@@ -1,1 +1,2 @@
 Sending SMS notification through Message Bird Service API
+Decompress Vendor.rar and put it in the same folder as your Php file ( or download composer and run the cmd command composer require messagebird/php-rest-api )  
