@@ -1,0 +1,74 @@
+.posts-wrapper {
+    width: 50%;
+    margin: 20px auto;
+    border: 1px solid #eee;
+  }
+  .post {
+   
+ 
+  padding: 10px 5px 0px 5px;
+  width: 350px;
+  margin: 50px 0;
+  text-align: right;
+  float: right;
+
+  }
+  .post-info {
+    margin: 10px auto 0px;
+    padding: 5px;
+    display:inline-block;
+  
+  }
+  .fa {
+    font-size: 1.2em;
+  }
+  .fa-thumbs-down, .fa-thumbs-o-down {
+    transform:rotateY(180deg);
+  }
+  .logged_in_user {
+    padding: 10px 30px 0px;
+      transition: color 0.3s;
+  }
+  i {
+    color: blue;
+  }
+  .vote{
+  width: 350px;
+  margin: 50px 0;
+  text-align: right;
+  float: right;
+}
+.vote_bar{
+  display: inline-block;
+  width: 100%;
+  height : 4px;
+  background-color: #f25648;
+
+}
+.vote_progress{
+height: 4px;
+width: 0%;
+background-color: #63b96b;
+
+}
+.vote_btns{
+  margin-top: 10px;
+  text-align: right; 
+}
+.vote_btn{
+  border: none;
+  padding: 0;
+  margin:0 0 0 10px;
+  display:inline-block;
+  
+  cursor: pointer;
+  background: transparent;
+  transition: color 0.3s; 
+}
+.vote_like:hover{
+  color: #63b96b;
+}
+
+.vote_dislike:hover{
+  color:#f25648;
+}
