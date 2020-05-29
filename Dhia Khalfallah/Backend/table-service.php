@@ -112,15 +112,20 @@
     <!-- Left Panel -->
         <?PHP
      
-         include "entities/reclamation.php";
-          include "core/reclam.php";
+         include "../../entities/reclamation.php";
+         include "../../entities/personels.php";
+          include "../../core/reclam.php";
+          include "notifications.php";   
          
             $reclam1=new Reclam();
            $listeCommandes=$reclam1->afficherReclam();
+           $personel= new PersonelsC() ; 
+           $listePersonels= $personel->afficherPers() ; 
+
+
         
      ?>
-
-    <aside id="left-panel" class="left-panel">
+  <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
 
             <div class="navbar-header">
@@ -134,19 +139,20 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>EspaceAdmin</a>
+                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i> Espace Admin </a>
                     </li>
                     <h3 class="menu-title"> Éléments IU</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
                         <ul class="sub-menu children dropdown-menu">
                             <!-- <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li> -->
-                            <li><i class="fa fa-table"></i><a href="table-client.html">Client</a></li>
-                            <li><i class="fa fa-table"></i><a href="table-panier.html">Panier</a></li>
-                            <li><i class="fa fa-table"></i><a href="table-produit.html">Produit</a></li>
-                            <li><i class="fa fa-table"></i><a href="table-coaching.html">Coaching</a></li>
-                            <li><i class="fa fa-table"></i><a href="table-marketing.html">Marketing</a></li>
-                            <li><i class="fa fa-table"></i><a href="table-service.html">Service après-vente</a></li>
+                            <li><i class="fa fa-table"></i><a href="Affclient.php">Client</a></li>
+                            <li><i class="fa fa-table"></i><a href="table-panier.php">Panier</a></li>
+                            <li><i class="fa fa-table"></i><a href="table-produit.php">Produit</a></li>
+                            <li><i class="fa fa-table"></i><a href="table-coaching.php">Coaching</a></li>
+                            <li><i class="fa fa-table"></i><a href="table-marketing.php">Marketing</a></li>
+                            <li><i class="fa fa-table"></i><a href="table-service.php">Service après-vente</a></li>
+                            <li><i class="fa fa-table"></i><a href="AfficherClub.php">Nos Clubs</a></li>
                         </ul>
                     </li>
                 
@@ -158,19 +164,26 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Graphiques</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Graphiques JS</a></li>
-                            <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Graphiques</a></li>
-                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Graphiques</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="Gra_comm.php"> Graphiqucommande</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="Gra_produit.php"> GraphiqueProduit</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="Gra_club.php"> GraphiqueClub</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="Gra_offres.php"> Graphique_Offres</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="calandrier.php"> calender</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href=" Gra_rec.php">  Gra_rec</a></li>
+                           
                         </ul>
+                       
                     </li>
+                   
+                
                     
                     <h3 class="menu-title">Suppléments</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">S'identifier</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">S'inscrire</a></li>
-                            <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Mot De Passe Oublier</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.php">S'identifier</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="registeruser.php">S'inscrire</a></li>
+                            <li><i class="menu-icon fa fa-paper-plane"></i><a href="logout.php">Se Déconnecter</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -184,8 +197,24 @@
 
     <div id="right-panel" class="right-panel">
 
+
         <!-- Header-->
         <header id="header" class="header">
+        <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/admin1.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="espace_admin.php"><i class="fa fa-user"></i> Mon Profile</a>
+
+                            <a class="nav-link" href="page-login.php"><i class="fa fa-user"></i> se connecter </a>
+
+                            <a class="nav-link" href="registeruser.php"><i class="fa fa-cog"></i> s'inscrire</a>
+
+                            <a class="nav-link" href="logout.php"><i class="fa fa-power-off"></i> Se déconnecter</a>
+                        </div>
+                    </div>
 
             <div class="header-menu">
 
@@ -203,113 +232,57 @@
                         <div class="dropdown for-notification">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-bell"></i>
-                                <span class="count bg-danger">5</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="notification">
-                                <p class="red">vous avez 3 Notifications</p>
-                                <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <i class="fa fa-check"></i>
-                                <p>Serveur # 1 surchargé.</p>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-4" href="#">
-                                <i class="fa fa-info"></i>
-                                <p>Serveur #2  surchargé.</p>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-5" href="#">
-                                <i class="fa fa-warning"></i>
-                                <p>Serveur # 1 surchargé.</p>
-                            </a>
-                            </div>
-                        </div>
+                                <?php
 
-                        <div class="dropdown for-message">
-                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                id="message"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-email"></i>
-                                <span class="count bg-primary">9</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="message">
-                                <p class="red">vous avez 4 Mails</p>
-                                <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Jonathan Smith</span>
-                                    <span class="time float-right"> Juste maintenant </span>
-                                        <p>salut,c'est un  example msg</p>
-                                </span>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-4" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Jack Sanders</span>
-                                    <span class="time float-right"> Il y a 5 minutes</span>
-                                        <p>salut,c'est un  example msg</p>
-                                </span>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-5" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Cheryl Wheeler</span>
-                                    <span class="time float-right"> Il y a 10 minutes </span>
-                                        <p>salut,c'est un  example msg</p>
-                                </span>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-3" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Rachel Santos</span>
-                                    <span class="time float-right">Il y a 15 minutes </span>
-                                        <p>salut,c'est un  example msg</p>
-                                </span>
-                            </a>
+                                   $query = "SELECT * from notifications where status = 'unread' order by date DESC";
+                                    if(count(fetchAll($query))>0){
+                                         ?>
+                                        <span class="badge badge-danger badge-counter"><?php echo count(fetchAll($query)); ?></span>
+                                              <?php
+                                                 } 
+                                                ?>
+                             </button>
+                             <div class="dropdown-menu" aria-labelledby="notification">
+                                                    <?php
+                                                    
+                                                        $query = "SELECT * from notifications  order by date DESC";
+                                                       if (count(fetchAll($query))>0){
+                                                      foreach(fetchAll($query) as$i){
+                                                      ?>
+                        
+                                                  
+                                                      <p class="red"> <?php echo count(fetchAll($query)); ?> </p>
+                                                         <a style="<?php if($i['status']=='unread'){ echo "font-weight:bold;"; } ?> " class="dropdown-item d-flex align-items-center"?id=<?php echo $i['id']  ?> href="<?php echo $i['lien'] ?>">
+                                                                     <div class="mr-3">
+                                                                         <div class="icon-circle bg-primary">
+                                                                              <i class="fas fa-file-alt text-white"></i>
+                                                                         </div>
+                                                                     
+                                                            <div>
+                                                                <div class="small text-gray-500"><?php echo $i['date']?></div>
+                                                                    <span class="font-weight-bold"><?php echo $i['message']?></span>
+                                                              </div>
+                                                         </a>
+                                                                     <div class="dropdown-divider"></div>
+                                                                    
+                                                                        
+                           
+                                   
+                                     <?php
+                                                                           }
+                                                                            }
+                                       
+                                       ?>
+                                         </div>
                             </div>
-                        </div>
+                       
                     </div>
                 </div>
 
-                <div class="col-sm-5">
-                    <div class="user-area dropdown float-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
-                        </a>
-
-                        <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa-user"></i> Mon Profile</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-cog"></i> paramétre</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Se déconnecter</a>
-                        </div>
-                    </div>
-
-                    <div class="language-select dropdown" id="language-select">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
-                            <i class="flag-icon flag-icon-us"></i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="language">
-                            <div class="dropdown-item">
-                                <span class="flag-icon flag-icon-fr"></span>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-es"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-us"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-it"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+             
             </div>
 
-        </header><!-- /header -->
-
+        </header>
    <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
@@ -338,21 +311,10 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"> Réclamations </strong>
+                                <strong class="card-title">reclamation</strong>
                             </div>
                             <div class="card-body">
-                               <!--Bouton recherche                               -->
-                               <div style=" transform:translate(0%,5%); ">
-                                    <div class="buscar-caja" > 
-        <input type="text" class="buscar-txt" id="myInput2" onkeyup="myFunction2()" placeholder="Search for idc.."  title="Type in a name"/> 
-        <a class="buscar-btn"> <i class="fa fa-search"></i> </a>
-
-</div> 
-    </div> 
-    <br>
-    <br>
-    <br>
-                                <table  id="selectedColumn2" class="table table-striped table-bordered table-sm table-sortable "cellspacing="0" width="100%">
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>ref_reclamations</th>
@@ -377,19 +339,21 @@
                          <td><?PHP echo $row['username']; ?></td>
                           <td><?PHP echo $row['description_rec']; ?></td>
                          <td><?PHP echo $row['id_commandes']; ?></td>
-                                               <td> <form action="mail.php">
+                                               <td> <form action="sendmail.php" method="POST">
                                                    
-<input type="submit" value="repondre" class="btn btn-primary btn-lg" style="margin-top:3%;margin-left:5%;border-radius: 5%;">
-                                                   
+<input type="submit" value="Repondre" class="btn btn-primary btn-lg" style="margin-top:3%;margin-left:5%;border-radius: 5%;">
+     <input  type="hidden" value="<?PHP echo $row['username']; ?>" name="usermail">
+                                                  
                                                  </form> 
                                             </td>    
                                             
                                              
                          <td>   <form method="POST"
                     action="SuppRec.php">
-    <input type="submit" name="supprimer"
-           value="supprimer" class="btn btn-primary btn-lg" style="margin-top:3%;margin-left:5%;border-radius: 5%;">
-                                           </td>
+                    <button type="submit" class="btn btn-primary btn-lg" style="margin-top:3%;margin-left:5%;border-radius: 5%;">
+                                                <img src="supprimer.png" style="height: 30px;" >
+                                                </button>
+                                            
     <input  type="hidden" value="<?PHP echo $row['ref_reclamations']; ?>" name="ref_reclamations">
     </form>
     
@@ -413,7 +377,6 @@
             </div><!-- .animated -->
         </div><!-- .content -->
 
-
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
@@ -421,54 +384,46 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Personnel</strong>
+                                <strong class="card-title">Personels</strong>
                             </div>
                             <div class="card-body">
-                                <select id="trier" style="margin-left: 85%; margin-bottom: 1%; border-radius: 5%;" >
-                                    <option value="trier_id">trier par Id_client</option>
-                                    <option value="trier_nom">trier par nom </option>
-                                    <option value="trier_nom">trier par prenom </option>
-                                   
-                                  </select>
-                                  <div style="margin-left: 75%;">
-                                    <label>Search : </label><input type="search">
-                                  </div>
-                                <table class="table table-striped table-bordered">
+                                <table id="bootstrap-data-table-export1" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Id Client</th>
-                                            <th>Id_Personnel</th>
-                                            <th>Spécialité</th>
-                                            <th>Numero</th>
-                                            <th>ref_reclamation</th>
-                                            <th> suppression</th>
-                                           
+                                            <th>Nom</th>
+                                            <th>Prenom</th>
+                                            <th>CIN</th>
+                                            <th> Adresse E-mail</th>
+                                            <th> Numero de Telephone</th>
+                                            <th> Actions </th>
+    
                                         </tr>
                                     </thead>
                                                                       <?php
 
-                                           foreach($listeCommandes as $row){
+                                           foreach($listePersonels as $row){
                                         ?>
                                         <tr>
                                       
-                             <td><?PHP echo $row['ref_cmd']; ?></td>
-                         <td><?PHP echo $row['ref_prod']; ?></td>
-                         <td><?PHP echo $row['username']; ?></td>
-                          <td><?PHP echo $row['categorie']; ?></td>
-                         <td><?PHP echo $row['prix_total']; ?></td>
-                     <td><?PHP echo $row['jour_arrivee']; ?></td>
-                            <td><?PHP echo $row['mod_paiement']; ?></td>
-                            <td>
-                            <form method="POST"
-                    action="supprimercommandes.php">
-    <input type="submit" name="supprimer"
-           value="supprimer" class="btn btn-primary btn-lg" style="margin-top:3%;margin-left:5%;border-radius: 5%;">
-                                           </td>
-    <input  type="hidden" value="<?PHP echo $row['ref_cmd']; ?>" name="ref_cmd">
-    </form>
-    <td><a href="modifiercommande.php?ref_cmd=<?PHP echo $row['ref_cmd']; ?>">
-    Modifier</a></td>
-    
+                             <td><?PHP echo $row['nom']; ?></td>
+                         <td><?PHP echo $row['prenom']; ?></td>
+                         <td><?PHP echo $row['cin']; ?></td>
+                          <td><?PHP echo $row['mail']; ?></td>
+                         <td><?PHP echo $row['tel']; ?></td>
+
+                          <td> 
+                                               <form action="supprimerPersonel.php" method="POST">
+                                               <button type="submit" class="btn btn-primary btn-lg" style="margin-top:3%;margin-left:5%;border-radius: 5%;"onclick="return confirm('Etes-vous sur de vouloir supprimer ce personel ?')">
+                                                    <img src="supprimer.png" style="height: 30px;" >
+                                                </button>
+                                               
+                                                  <input  value="<?PHP echo $row['cin']; ?>" name="cin" type="hidden">
+                                                </form>
+                                           
+                                                <button type="button" class="btn btn-primary btn-lg" style="margin-top:3%;margin-left:5%;border-radius: 5%;">
+                                                    <a href="modifpersonels.php?cin=<?PHP echo $row['cin']; ?>" >   <img src="modifier.png" style="height: 30px;" > </a>
+                                                </button></td>
+
 
                                         </tr>
 
@@ -487,7 +442,11 @@
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
-
+        <div>
+            <button type="button" class="btn btn-primary btn-lg"  style="margin-top:3%;margin-left:5%;border-radius: 5%;">
+                <a href="ajoutPersonels.php">Ajouter</a>
+            </button>
+          </div>
 
     </div><!-- /#right-panel -->
 
@@ -599,9 +558,93 @@ document.querySelectorAll(".table-sortable  th").forEach(headerCell => {
     <script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
     <script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/init-scripts/data-table/datatables-init.js"></script>
+
 
 
 </body>
+<script>
+(function ($) {
+    //    "use strict";
+
+
+    /*  Data Table
+    -------------*/
+
+    $('#bootstrap-data-table').DataTable({
+        lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+    });
+
+    $('#bootstrap-data-table-export').DataTable({
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+    });
+
+	$('#row-select').DataTable( {
+        initComplete: function () {
+				this.api().columns().every( function () {
+					var column = this;
+					var select = $('<select class="form-control"><option value=""></option></select>')
+						.appendTo( $(column.footer()).empty() )
+						.on( 'change', function () {
+							var val = $.fn.dataTable.util.escapeRegex(
+								$(this).val()
+							);
+
+							column
+								.search( val ? '^'+val+'$' : '', true, false )
+								.draw();
+						} );
+
+					column.data().unique().sort().each( function ( d, j ) {
+						select.append( '<option value="'+d+'">'+d+'</option>' )
+					} );
+				} );
+			}
+		} );
+
+})(jQuery);
+</script>
+<script>
+(function ($) {
+    //    "use strict";
+
+
+    /*  Data Table
+    -------------*/
+
+    $('#bootstrap-data-table1').DataTable({
+        lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+    });
+
+    $('#bootstrap-data-table-export1').DataTable({
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+    });
+
+	$('#row-select').DataTable( {
+        initComplete: function () {
+				this.api().columns().every( function () {
+					var column = this;
+					var select = $('<select class="form-control"><option value=""></option></select>')
+						.appendTo( $(column.footer()).empty() )
+						.on( 'change', function () {
+							var val = $.fn.dataTable.util.escapeRegex(
+								$(this).val()
+							);
+
+							column
+								.search( val ? '^'+val+'$' : '', true, false )
+								.draw();
+						} );
+
+					column.data().unique().sort().each( function ( d, j ) {
+						select.append( '<option value="'+d+'">'+d+'</option>' )
+					} );
+				} );
+			}
+		} );
+
+})(jQuery);
+</script>
 
 </html>
