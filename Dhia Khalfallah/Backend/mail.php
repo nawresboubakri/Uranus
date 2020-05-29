@@ -1,7 +1,17 @@
 <?php
+          //include "sms.php";
 
-if (mail('dhiaeddine.khalfallah@esprit.tn', 'none', 'test effectuer', 'From: serviceclients.sport@gmail.com'))  
-echo "done" ;
+$body=$_POST['email'] ; 
+$to=$_POST['usermailing'] ; 
+
+if (mail($to, 'Reponse a votre réclamation', $body, 'From: serviceclients.sport@gmail.com'))
+{
+	//sms() ; 
+	$message = "Email Sent , The USER has been notified by SMS";
+echo "<script type='text/javascript'>alert('$message');</script>";
+}
 else 
-echo "nope" ;
+echo "<script type='text/javascript'>'Mail not sent';</script>";
+header('Location: table-service.php');
+
 ?>
