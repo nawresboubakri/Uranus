@@ -339,11 +339,11 @@
                          <td><?PHP echo $row['username']; ?></td>
                           <td><?PHP echo $row['description_rec']; ?></td>
                          <td><?PHP echo $row['id_commandes']; ?></td>
-                                               <td> <form action="sendmail.php" method="POST">
+                                               <td> <form action="sendmail.php?ref=<?PHP echo $row['ref_reclamations']; ?>" method="POST">
                                                    
 <input type="submit" value="Repondre" class="btn btn-primary btn-lg" style="margin-top:3%;margin-left:5%;border-radius: 5%;">
      <input  type="hidden" value="<?PHP echo $row['username']; ?>" name="usermail">
-                                                  
+    
                                                  </form> 
                                             </td>    
                                             
@@ -445,6 +445,9 @@
         <div>
             <button type="button" class="btn btn-primary btn-lg"  style="margin-top:3%;margin-left:5%;border-radius: 5%;">
                 <a href="ajoutPersonels.php">Ajouter</a>
+            </button>
+                        <button type="button" class="btn btn-primary btn-lg"  style="margin-top:3%;margin-left:5%;border-radius: 5%;">
+                <a href="searchmail.php">Voir les mails</a>
             </button>
           </div>
 
